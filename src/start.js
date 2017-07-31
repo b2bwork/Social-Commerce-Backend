@@ -81,7 +81,8 @@ export const start = async () => {
     }));
 
     const app = express()
-    app.use('/products', express.static('productsImages'));
+    app.use('/productsImage', express.static('productsImages'));
+    app.use('/reviewImages', express.static('reviewImages'));
     app.use(cors())
 
     mongoose.connect(MONGO_URL, {
@@ -111,7 +112,20 @@ export const start = async () => {
           return res.send(JSON.stringify(err));
         }
         let url = data;
-        let real = url.link.replace('../froala_images/', 'http://localhost:3001/image/');
+        let real = url.link.replace('../productsImages/', 'http://localhost:3001/productsImage/');
+        console.log(real)
+        res.send({ link: real });
+      });
+    });
+    app.post('/review_image', function (req, res) {
+
+      froala.Image.upload(req, '../reviewImages/', function (err, data) {
+        if (err) {
+          console.log(err)
+          return res.send(JSON.stringify(err));
+        }
+        let url = data;
+        let real = url.link.replace('../reviewImages/', 'http://localhost:3001/reviewImages/');
         console.log(real)
         res.send({ link: real });
       });
