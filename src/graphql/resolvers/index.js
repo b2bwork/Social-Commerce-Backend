@@ -8,6 +8,7 @@ import updateUserFinace from './users/updateUserFinace';
 import userProfileQuery from './users/userProfileQuery';
 import userAddressQuery from './users/userAddressQuery';
 import userFinaceQuery from './users/userFinaceQuery';
+import userPostReview from './users/userPostReview';
 
 import listProducts from './products/listProducts';
 import category from './products/categorys';
@@ -22,4 +23,5 @@ export default merge(updateUserProfile ,
                      userFinaceQuery , 
                      listProducts ,
                      category ,
-                     productContent , );
+                     productContent ,
+                     userPostReview , );
