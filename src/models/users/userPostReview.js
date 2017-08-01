@@ -4,6 +4,9 @@ let userPostReview = new mongoose.Schema({
     userID: {
         type: String
     },
+    coverImage:{
+        type: String
+    },
     userName: {
         type: String
     },
