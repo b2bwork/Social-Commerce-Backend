@@ -1,4 +1,4 @@
-import { MongoClient, ObjectId } from 'mongodb'
+import multer from 'multer';
 import express from 'express'
 import bodyParser from 'body-parser'
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express'
@@ -16,6 +16,8 @@ import {
 } from './config';
 import mongoose from 'mongoose';
 import userProfile from './models/users/usersProfile'
+import reviewModel from './models/users/userPostReview';
+
 var passportjs = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var facebookAuth = require('passport-facebook');
@@ -80,13 +82,36 @@ export const start = async () => {
       done(null, { UserID: profile.id, Username: profile.displayName, ProfileImage: profile.photos[0].value });
     }));
 
+    const storage = multer.diskStorage({
+      destination: __dirname + '/../reviewCoverImage/',
+      filename: function (req, file, cb) {
+        cb(null, Date.now() + file.originalname)
+      }
+    })
+
+    let reviewCoverImage = multer({ storage: storage })
+
     const app = express()
     app.use('/productsImage', express.static('productsImages'));
     app.use('/reviewImages', express.static('reviewImages'));
+    app.use('/reviewCoverImage', express.static('reviewCoverImage'));
     app.use(cors())
 
     mongoose.connect(MONGO_URL, {
       useMongoClient: true,
+    });
+    app.post('/review/coverImage', reviewCoverImage.any(),async function (req, res, next) {
+      let add = await reviewModel.update({
+        _id: req.body._id
+      },{
+        coverImage: `http://localhost:3001/reviewCoverImage/${req.files[0].filename}`
+      }).then((data)=>{
+        console.log(data);
+      }).catch((err)=>{
+        console.log(err);
+      })
+      res.end("");
+
     });
     app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }))
 
@@ -104,6 +129,7 @@ export const start = async () => {
       function (req, res) {
         res.redirect(`http://localhost:4200/#/authed/Facebook/${req.user.UserID}`);
       });
+
     app.post('/upload_image', function (req, res) {
 
       froala.Image.upload(req, '../productsImages/', function (err, data) {
@@ -113,7 +139,6 @@ export const start = async () => {
         }
         let url = data;
         let real = url.link.replace('../productsImages/', 'http://localhost:3001/productsImage/');
-        console.log(real)
         res.send({ link: real });
       });
     });
@@ -126,7 +151,6 @@ export const start = async () => {
         }
         let url = data;
         let real = url.link.replace('../reviewImages/', 'http://localhost:3001/reviewImages/');
-        console.log(real)
         res.send({ link: real });
       });
     });
