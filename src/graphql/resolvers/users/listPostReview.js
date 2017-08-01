@@ -20,7 +20,6 @@ export default {
                     $in:userCategory
                 }
             }).then((data)=>{
-                console.log(data);
                 returnData = data
             }).catch((err)=>{
                 console.log(err);
