@@ -8,7 +8,7 @@ import userProfileType from './types/usersAddress';
 import productsType from './types/Products';
 import userBuyProductType from './types/userBuyProduct';
 import categorysType from './types/categorys';
-import userReview from './types/userPostReview';
+import Reviews from './types/reviews';
 
 
 import Resolvers from './resolvers';
@@ -25,7 +25,7 @@ export const schema = makeExecutableSchema({
     userAddressType ,
     userProfileType ,
     userBuyProductType ,
-    userReview ,
+    Reviews ,
     categorysType ,
     productsType ,
     GraphMutation ,

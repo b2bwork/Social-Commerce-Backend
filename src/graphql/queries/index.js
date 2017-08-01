@@ -6,5 +6,6 @@ export default `
         listproducts(typeId: String!): [products]
         liscategory: [category]
         productContent(_id: String!): products
+        listPostReview(userID: String!): [reviews]
     }
 `

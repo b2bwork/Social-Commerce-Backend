@@ -35,6 +35,6 @@ export default `
                         userImage: String! , 
                         title: String! , 
                         category: String! ,
-                        content: String ): userReview
+                        content: String ): reviews
     }
 `
