@@ -12,7 +12,8 @@ import userPostReview from './users/userPostReview';
 
 import listProducts from './products/listProducts';
 import category from './products/categorys';
-import productContent from './products/productContent'
+import productContent from './products/productContent';
+import listPostReview from './users/listPostReview';
 
 export default merge(updateUserProfile ,
                      updateUserAddress , 
@@ -24,4 +25,5 @@ export default merge(updateUserProfile ,
                      listProducts ,
                      category ,
                      productContent ,
-                     userPostReview , );
+                     userPostReview ,
+                     listPostReview , );

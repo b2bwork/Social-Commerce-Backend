@@ -1,5 +1,6 @@
 export default `
-    type userReview{
+    type reviews{
+        _id: String
         userID: String
         userName: String
         userImage: String
