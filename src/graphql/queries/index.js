@@ -7,5 +7,6 @@ export default `
         liscategory: [category]
         productContent(_id: String!): products
         listPostReview(userID: String!): [reviews]
+        reviewContent(_id: String!): reviews
     }
 `
