@@ -4,7 +4,7 @@ let products = new mongoose.Schema({
   typeId:{
     type: String,
   },
-  type: {
+  category: {
     type: String,
   },
   name: {
