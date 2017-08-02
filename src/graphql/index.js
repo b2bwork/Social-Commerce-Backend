@@ -9,6 +9,7 @@ import productsType from './types/Products';
 import userBuyProductType from './types/userBuyProduct';
 import categorysType from './types/categorys';
 import Reviews from './types/reviews';
+import commentReview from './types/reviewComments';
 
 
 import Resolvers from './resolvers';
@@ -25,6 +26,7 @@ export const schema = makeExecutableSchema({
     userAddressType ,
     userProfileType ,
     userBuyProductType ,
+    commentReview ,
     Reviews ,
     categorysType ,
     productsType ,
