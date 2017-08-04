@@ -43,5 +43,9 @@ export default `
                         userName: String ,
                         userImage: String! ,
                         comment: String! ):reviewComments
+
+        addPollProducts( userID: String! , 
+                         userName: String! ,
+                         products: productsDetail): pollProduct
     }
 `
