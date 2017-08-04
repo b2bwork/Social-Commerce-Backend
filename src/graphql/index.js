@@ -10,6 +10,8 @@ import userBuyProductType from './types/userBuyProduct';
 import categorysType from './types/categorys';
 import Reviews from './types/reviews';
 import commentReview from './types/reviewComments';
+import ProductInput from './input/productsDetail';
+import pollProductType from './types/pollProducts';
 
 
 import Resolvers from './resolvers';
@@ -30,6 +32,8 @@ export const schema = makeExecutableSchema({
     Reviews ,
     categorysType ,
     productsType ,
+    pollProductType ,
+    ProductInput ,
     GraphMutation ,
     GraphQuery ,
     SchemaDef ,
