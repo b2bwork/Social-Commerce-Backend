@@ -17,6 +17,8 @@ import listPostReview from './users/listPostReview';
 import reviewContent from './users/reviewContent';
 import commentReview from './users/commentReview';
 import listReviewComment from './users/listReviewComment'
+import addPollProducts from './products/addPollProducts'
+import pollProduct from './products/pollProduct';
 
 export default merge(updateUserProfile ,
                      updateUserAddress , 
@@ -32,4 +34,6 @@ export default merge(updateUserProfile ,
                      listPostReview ,
                      reviewContent ,
                      commentReview ,
-                     listReviewComment , );
+                     listReviewComment ,
+                     addPollProducts,
+                     pollProduct , );
