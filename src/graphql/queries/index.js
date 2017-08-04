@@ -9,5 +9,6 @@ export default `
         listPostReview(userID: String!): [reviews]
         reviewContent(_id: String!): reviews
         reviewComment(reviewID: String!): [reviewComments]
+        pollProduct(_id: String!): pollProduct
     }
 `
