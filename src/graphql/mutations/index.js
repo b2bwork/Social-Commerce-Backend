@@ -47,5 +47,8 @@ export default `
         addPollProducts( userID: String! , 
                          userName: String! ,
                          products: productsDetail): pollProduct
+        updateProductPollScore( _id: String! ,
+                                userID: String! ,
+                                productName: String!): pollProduct
     }
 `
