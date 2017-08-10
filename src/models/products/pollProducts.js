@@ -9,6 +9,9 @@ let pollProduct = new mongoose.Schema({
     },
     products:{
         type: mongoose.SchemaTypes.Mixed
+    },
+    userIDVoted:{
+        type: Array
     }
 },{versionKey: false});
 
