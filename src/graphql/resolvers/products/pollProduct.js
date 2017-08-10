@@ -8,7 +8,6 @@ export default {
             }).then((data)=>{
                 returndata = data;
             });
-            console.log(returndata.products)
             return returndata;
         }
     }

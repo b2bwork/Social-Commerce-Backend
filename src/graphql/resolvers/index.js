@@ -19,6 +19,8 @@ import commentReview from './users/commentReview';
 import listReviewComment from './users/listReviewComment'
 import addPollProducts from './products/addPollProducts'
 import pollProduct from './products/pollProduct';
+import listPollProduct from './products/listPollProduct';
+import updateProductPollScore from './products/updateProductPollScore';
 
 export default merge(updateUserProfile ,
                      updateUserAddress , 
@@ -36,4 +38,6 @@ export default merge(updateUserProfile ,
                      commentReview ,
                      listReviewComment ,
                      addPollProducts,
-                     pollProduct , );
+                     pollProduct ,
+                     listPollProduct ,
+                     updateProductPollScore );
