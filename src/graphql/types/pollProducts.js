@@ -7,7 +7,6 @@ export default `
     }
 
     type pollProductDetail{
-        index: [Int]
         productName: [String]
         productImage: [String]
         productScore: [Int]

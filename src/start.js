@@ -17,6 +17,7 @@ import {
 import mongoose from 'mongoose';
 import userProfile from './models/users/usersProfile'
 import reviewModel from './models/users/userPostReview';
+import pollProduct from './models/products/pollProducts.js';
 
 var passportjs = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
@@ -88,17 +89,40 @@ export const start = async () => {
         cb(null, Date.now() + file.originalname)
       }
     })
+    const storagePollProductImages = multer.diskStorage({
+      destination: __dirname + '/../PollProductImages/',
+      filename: function (req, file, cb) {
+        cb(null, Date.now() + file.originalname)
+      }
+    });
 
-    let reviewCoverImage = multer({ storage: storage })
+
+    let reviewCoverImage = multer({ storage: storage });
+    let PollProductImage = multer({ storage: storagePollProductImages});
 
     const app = express()
     app.use('/productsImage', express.static('productsImages'));
     app.use('/reviewImages', express.static('reviewImages'));
     app.use('/reviewCoverImage', express.static('reviewCoverImage'));
+    app.use('/PollProductImages' , express.static('PollProductImages'));
     app.use(cors())
 
     mongoose.connect(MONGO_URL, {
       useMongoClient: true,
+    });
+    app.post('/poll/Image', PollProductImage.any(),async function (req, res, next) {
+      console.log(req.files)
+      let add = await pollProduct.update({
+        _id: req.body._id
+      },{
+        $push: {"products.productImage":`http://localhost:3001/PollProductImages/${req.files[0].filename}`}
+      }).then((data)=>{
+        console.log(data);
+      }).catch((err)=>{
+        console.log(err);
+      })
+      res.end("");
+
     });
     app.post('/review/coverImage', reviewCoverImage.any(),async function (req, res, next) {
       let add = await reviewModel.update({

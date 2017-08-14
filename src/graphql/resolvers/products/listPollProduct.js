@@ -6,7 +6,6 @@ export default {
             let returnData = null;
             let list = await listPollProductModel.find({})
                 .then((data) => {
-                    console.log(data)
                     returnData = data;
                 })
                 .catch((err) => {
