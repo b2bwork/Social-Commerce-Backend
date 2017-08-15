@@ -116,10 +116,6 @@ export const start = async () => {
         _id: req.body._id
       },{
         $push: {"products.productImage":`http://localhost:3001/PollProductImages/${req.files[0].filename}`}
-      }).then((data)=>{
-        console.log(data);
-      }).catch((err)=>{
-        console.log(err);
       })
       res.end("");
 
@@ -129,10 +125,6 @@ export const start = async () => {
         _id: req.body._id
       },{
         coverImage: `http://localhost:3001/reviewCoverImage/${req.files[0].filename}`
-      }).then((data)=>{
-        console.log(data);
-      }).catch((err)=>{
-        console.log(err);
       })
       res.end("");
 
