@@ -11,5 +11,7 @@ export default `
         reviewComment(reviewID: String!): [reviewComments]
         pollProduct(_id: String!): pollProduct
         listPollProduct: [pollProduct]
+        listUserPollProduct(userID: String!):[pollProduct]
+        listUserReview(userID: String!): [reviews]
     }
 `
