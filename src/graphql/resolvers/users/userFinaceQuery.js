@@ -1,6 +1,6 @@
 import userProfile from '../../../models/users/usersProfile';
 
-export default{
+export default {
     Query: {
         userFinace: async(root , params , options)=>{
             let returnData = null;

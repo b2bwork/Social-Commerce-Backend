@@ -21,7 +21,8 @@ import addPollProducts from './products/addPollProducts'
 import pollProduct from './products/pollProduct';
 import listPollProduct from './products/listPollProduct';
 import updateProductPollScore from './products/updateProductPollScore';
-
+import listUserPollProduct from './users/listUserPollProduct';
+import listuserReview from './users/listUserReview';
 export default merge(updateUserProfile ,
                      updateUserAddress , 
                      updateCommunityRef , 
@@ -40,4 +41,6 @@ export default merge(updateUserProfile ,
                      addPollProducts,
                      pollProduct ,
                      listPollProduct ,
-                     updateProductPollScore );
+                     updateProductPollScore,
+                     listUserPollProduct,
+                     listuserReview );

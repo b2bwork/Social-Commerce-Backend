@@ -1,6 +1,6 @@
 import userProfile from '../../../models/users/usersProfile';
 
-export default{
+export default {
     Query:{
         userProfile: async (root , params , option , )=>{
 

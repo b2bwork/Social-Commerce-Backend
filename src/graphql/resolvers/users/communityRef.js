@@ -1,6 +1,6 @@
 import userProfileModel from '../../../models/users/usersProfile';
 
-export default{
+export default {
     Mutation:{
         updateCommunityRef(root,params,option){
             const update = userProfileModel.update({
