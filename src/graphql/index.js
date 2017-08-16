@@ -12,6 +12,7 @@ import Reviews from './types/reviews';
 import commentReview from './types/reviewComments';
 import ProductInput from './input/productsDetail';
 import pollProductType from './types/pollProducts';
+import omiseType from './types/omise';
 
 
 import Resolvers from './resolvers';
@@ -33,6 +34,7 @@ export const schema = makeExecutableSchema({
     categorysType ,
     productsType ,
     pollProductType ,
+    omiseType ,
     ProductInput ,
     GraphMutation ,
     GraphQuery ,
