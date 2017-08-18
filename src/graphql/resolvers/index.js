@@ -23,6 +23,8 @@ import listPollProduct from './products/listPollProduct';
 import updateProductPollScore from './products/updateProductPollScore';
 import listUserPollProduct from './users/listUserPollProduct';
 import listuserReview from './users/listUserReview';
+import buyProducts from './payment/buyProduct';
+import transactionHistory from './payment/transactionHistory';
 export default merge(updateUserProfile ,
                      updateUserAddress , 
                      updateCommunityRef , 
@@ -43,4 +45,6 @@ export default merge(updateUserProfile ,
                      listPollProduct ,
                      updateProductPollScore,
                      listUserPollProduct,
-                     listuserReview );
+                     listuserReview,
+                     buyProducts ,
+                     transactionHistory ,);

@@ -13,6 +13,8 @@ import {
   FACEBOOK_APP_ID,
   FACEBOOK_APP_KEY,
   FACEBOOK_CALLBACK_URL,
+  OMISE_PUBLIC_KEY,
+  OMISE_SECRET_KEY,
 } from './config';
 import mongoose from 'mongoose';
 import userProfile from './models/users/usersProfile'
@@ -23,9 +25,13 @@ var passportjs = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var facebookAuth = require('passport-facebook');
 var froala = require('../node_modules/wysiwyg-editor-node-sdk/lib/froalaEditor');
-
+export const omise = require('omise')({
+  'publicKey': OMISE_PUBLIC_KEY,
+  'secretKey': OMISE_SECRET_KEY
+})
 export const start = async () => {
   try {
+
     passportjs.use(new GoogleStrategy({
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_SECRET_KEY,
@@ -98,34 +104,34 @@ export const start = async () => {
 
 
     let reviewCoverImage = multer({ storage: storage });
-    let PollProductImage = multer({ storage: storagePollProductImages});
+    let PollProductImage = multer({ storage: storagePollProductImages });
 
     const app = express()
     app.use('/productsImage', express.static('productsImages'));
     app.use('/reviewImages', express.static('reviewImages'));
     app.use('/reviewCoverImage', express.static('reviewCoverImage'));
-    app.use('/PollProductImages' , express.static('PollProductImages'));
+    app.use('/PollProductImages', express.static('PollProductImages'));
     app.use(cors())
 
     mongoose.connect(MONGO_URL, {
       useMongoClient: true,
     });
-    app.post('/poll/Image', PollProductImage.any(),async function (req, res, next) {
+    app.post('/poll/Image', PollProductImage.any(), async function (req, res, next) {
       console.log(req.files)
       let add = await pollProduct.update({
         _id: req.body._id
-      },{
-        $push: {"products.productImage":`http://localhost:3001/PollProductImages/${req.files[0].filename}`}
-      })
+      }, {
+          $push: { "products.productImage": `http://localhost:3001/PollProductImages/${req.files[0].filename}` }
+        })
       res.end("");
 
     });
-    app.post('/review/coverImage', reviewCoverImage.any(),async function (req, res, next) {
+    app.post('/review/coverImage', reviewCoverImage.any(), async function (req, res, next) {
       let add = await reviewModel.update({
         _id: req.body._id
-      },{
-        coverImage: `http://localhost:3001/reviewCoverImage/${req.files[0].filename}`
-      })
+      }, {
+          coverImage: `http://localhost:3001/reviewCoverImage/${req.files[0].filename}`
+        })
       res.end("");
 
     });

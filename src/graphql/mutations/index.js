@@ -50,5 +50,9 @@ export default `
         updateProductPollScore( _id: String! ,
                                 userID: String! ,
                                 productName: String!): pollProduct
+        buyProduct( userID: String! ,
+                    tokenID: String! ,
+                    Products: productForBuy): omise
+        transactionHistory( userID: String!): [omise]
     }
 `

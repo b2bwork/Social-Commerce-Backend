@@ -1,0 +1,83 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Omise Tokenization - Vanilla JavaScript</title>
+    <style>
+      input, label {
+        display: block;
+      }
+      #notice {
+        display: none;
+        padding: 10px;
+        margin: 10px;
+        background: #FAFAFA;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Omise Tokenization - Vanilla JavaScript Example</h1>
+    <div>
+      <div id="notice"></div>
+      <form method="post" id="card-number-form">
+        <label>Card Number:</label>
+        <input type="number" name="card[number]" value="4242424242424242"/><br/>
+
+        <label>Card Name:</label>
+        <input type="text" name="card[name]" value="John Doe"/><br/>
+
+        <label>Security Code:</label>
+        <input type="password" name="card[security_code]" value="123" /><br/>
+
+        <label>Expiration Month:</label>
+        <input type="number" name="card[expiration_month]" value="12"/><br/>
+
+        <label>Expiration Year:</label>
+        <input type="number" name="card[expiration_year]" value="2030"/><br/>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+      $('#card-number-form').on('submit', function() {
+        var cardData = $(this).serialize();
+        var url = 'https://vault.omise.co/tokens';
+        var publicKey = 'pkey_test_57vo88hrxzcpzuhzzrg';
+        var authString = encryptBasicAuthorization(publicKey)
+		console.log(authString)
+        $.ajax({
+          type: 'POST',
+          url: url,
+          data: cardData,
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", authString);
+          },
+          success: function(token) {
+            var text = 'Received Token id = ' +  token.id
+              + '\n Use this id to send to your server to create a charge or save a card';
+            console.log(text);
+            $('#notice').show();
+            $('#notice').text(text);
+            // <<<<<<<<<< HERE >>>>>>>>>>>>
+            // Send token.id to your server to create a charge or save a card
+          },
+          error: function(err) {
+            console.log(err);
+          }
+        });
+        return false;
+      });
+      function encryptBasicAuthorization(key) {
+        return "Basic " + btoa(key + ":");
+      }
+    </script>
+  </body>
+</html>

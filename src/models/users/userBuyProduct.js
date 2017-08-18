@@ -9,10 +9,25 @@ let userBuyProduct =  new mongoose.Schema({
         type: String ,
         required: true
     },
+    productPrice: {
+        type: String ,
+        required: true,
+    },
+    price:{
+        type: Number ,
+    },
     quantity:{
         type: Number,
         default: 1
     },
+    transactionID:{
+        type: String,
+        required: true
+    },
+    createdTime:{
+        type: String,
+        required: true,
+    }
 } , {versionKey: false});
 
 export default mongoose.model('userBuyedProduct',userBuyProduct);
