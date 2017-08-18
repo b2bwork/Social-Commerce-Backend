@@ -9,6 +9,18 @@ let userBuyProduct =  new mongoose.Schema({
         type: String ,
         required: true
     },
+    tokenID:{
+        type: String ,
+        required: String
+    },
+    productName: {
+        type: String ,
+        required: true
+    },
+    productImage:{
+        type:String,
+        required: true,
+    },
     productPrice: {
         type: String ,
         required: true,

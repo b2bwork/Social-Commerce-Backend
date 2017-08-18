@@ -13,5 +13,6 @@ export default `
         listPollProduct: [pollProduct]
         listUserPollProduct(userID: String!):[pollProduct]
         listUserReview(userID: String!): [reviews]
+        transactionHistory( userID: String!): [omise]
     }
 `

@@ -53,6 +53,5 @@ export default `
         buyProduct( userID: String! ,
                     tokenID: String! ,
                     Products: productForBuy): omise
-        transactionHistory( userID: String!): [omise]
     }
 `

@@ -6,6 +6,12 @@ export default `
         tokenID: String
         created: Boolean
         createdTime: String
+        productID : String
+        productName: String
+        productImage: String
+        quantity: Int
+        productPrice: Int
+        price: Int
     }
 
     type forBuy{

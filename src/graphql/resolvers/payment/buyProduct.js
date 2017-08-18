@@ -24,26 +24,30 @@ export default {
                 if (resp.paid) {
                     let add = await buyProductModel.insertMany({
                         userID: params.userID,
+                        tokenID: params.tokenID,
                         productID: params.Products.productID,
+                        productName: params.Products.productNames,
                         productPrice: params.Products.productPrices,
                         price: params.Products.price,
                         quantity: params.Products.quantitys,
                         transactionID: resp.transaction,
+                        productImage: params.Products.productImage,
                         createdTime: now
                     }).then((data) => {
                         returnData = "success";
                         return "success";
-                    }).catch((err) => { 
+                    }).catch((err) => {
                         console.log(err);
-                        returnData = "failed"; });
-                        return "failed"
+                        returnData = "failed";
+                    });
+                    return "failed"
                 } else {
                     returnData = "failed";
                 }
             });
-            if(add.paid == true){
+            if (add.paid == true) {
                 return { created: true }
-            }else{
+            } else {
                 return { created: false }
             }
         }
